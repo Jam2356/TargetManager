@@ -9,19 +9,23 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    LogsManager.cpp \
-    TableManager.cpp \
-    main.cpp \
-    MainUI.cpp
+    Core/LogsManager.cpp \
+    Core/main.cpp \
+    UI/MainUI.cpp \
+    UI/TableManager.cpp \
 
 HEADERS += \
-    LogsManager.h \
-    MainUI.h
+    Core/LogsManager.h \
+    UI/MainUI.h
+
 
 FORMS += \
-    MainUI.ui
+    UI/MainUI.ui
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES +=

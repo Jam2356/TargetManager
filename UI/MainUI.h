@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QTableWidget>
-#include "LogsManager.h"
+#include "Core/LogsManager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainUI; }
