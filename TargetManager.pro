@@ -9,13 +9,17 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Core/DataManager.cpp \
     Core/LogsManager.cpp \
+    Core/Utils/WriterXML.cpp \
     Core/main.cpp \
     UI/MainUI.cpp \
     UI/TableManager.cpp \
 
 HEADERS += \
+    Core/DataManager.h \
     Core/LogsManager.h \
+    Core/Utils/WriterXML.h \
     UI/MainUI.h
 
 
@@ -28,4 +32,5 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES +=
+DISTFILES += \
+    Core/DATABASE/kurs4sem1.xml

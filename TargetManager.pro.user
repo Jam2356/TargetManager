@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 11.0.2, 2024-10-13T16:32:38. -->
+<!-- Written by QtCreator 11.0.2, 2024-10-15T20:30:33. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -238,8 +238,9 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:F:/Qt_example/TargetManager/TargetManager.pro</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">F:/Qt_example/TargetManager/TargetManager.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">TargetManager2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:F:/GIT/TargetManager/TargetManager/TargetManager.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">F:/GIT/TargetManager/TargetManager/TargetManager.pro</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
