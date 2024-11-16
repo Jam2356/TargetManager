@@ -1,4 +1,5 @@
 ﻿#include "MainUI.h"
+#include "Core/LogsManager.h"
 
 /**
  * @brief setTableWidget - установить таблицу
@@ -18,7 +19,7 @@ void MainUI::setTableWidget(quint32 rows, quint32 columns, QList<QString> column
 
     //Проверяем, достаточно ли у нас названий для колонок
     if(columnsNames.size() != static_cast<int>(columns)) {
-        logger->warningMessage(shortInfo + ": Количество названий колонок не соответствует количесву колонок");
+        LogsManager::warningMessage(className, "Number of column names does not match the number of columns");
         return;
     }
 
@@ -46,12 +47,4 @@ void MainUI::setItemText(quint32 row, quint32 column, QString text) {
     QTableWidgetItem * newItem = new QTableWidgetItem(text);
     table->setItem(row, column, newItem);
 
-}
-
-/**
- * @brief getClassName - возвращает имя класса
- * @return
- */
-QString MainUI::getClassName() {
-    return className;
 }

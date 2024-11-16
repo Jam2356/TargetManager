@@ -9,16 +9,25 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Core/AllObjects.cpp \
     Core/DataManager.cpp \
     Core/LogsManager.cpp \
+    Core/Utils/ObjectDataTypes.cpp \
+    Core/Utils/ReaderXML.cpp \
+    Core/Utils/SoloObject.cpp \
     Core/Utils/WriterXML.cpp \
     Core/main.cpp \
     UI/MainUI.cpp \
     UI/TableManager.cpp \
 
 HEADERS += \
+    Core/AllObjects.h \
     Core/DataManager.h \
     Core/LogsManager.h \
+    Core/Utils/EnumNumberType.h \
+    Core/Utils/ObjectDataTypes.h \
+    Core/Utils/ReaderXML.h \
+    Core/Utils/SoloObject.h \
     Core/Utils/WriterXML.h \
     UI/MainUI.h
 

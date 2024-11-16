@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include "Utils/WriterXML.h"
+#include "AllObjects.h"
 
 class DataManager : public QObject {
 
@@ -11,15 +11,14 @@ class DataManager : public QObject {
 
     private:
 
-        // Объект для записи в файл
-        WriterXML * write;
-
-        QString path = "F:/GIT/TargetManager/TargetManager/Core/DATABASE/kurs4sem1.xml";
+        QString path = "F:/GIT/TargetManager/Core/DATABASE/kurs4sem1.xml";
 
     public:
         explicit DataManager(QObject *parent = nullptr);
 
-        void writeTO();
+        void writeFullDatabase(AllObjects * allObjects);
+
+        void read();
 
     signals:
 

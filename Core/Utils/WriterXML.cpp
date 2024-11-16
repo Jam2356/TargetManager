@@ -1,5 +1,10 @@
 ﻿#include "WriterXML.h"
 
+#include "../LogsManager.h"
+
+// Статическое название класса
+QString WriterXML::className = "WriterXML";
+
 WriterXML::WriterXML()
 {
 
@@ -28,21 +33,16 @@ void WriterXML::write(QString path) {
         stream.writeStartElement("lines");
         {
 
-            stream.writeStartElement("object");
+            stream.writeStartElement("вава");
             {
-                stream.writeTextElement("title", "Qt Project");
-            }
-            stream.writeEndElement();
+                stream.writeTextElement("short", "2");
+                stream.writeTextElement("lab", "3");
+                stream.writeTextElement("prackt", "4");
+                stream.writeTextElement("tests", "5");
+                stream.writeTextElement("kt", "6");
+                stream.writeTextElement("credits", "7");
+                stream.writeTextElement("special", "8");
 
-        }
-        stream.writeEndElement();
-
-        stream.writeStartElement("lines1");
-        {
-
-            stream.writeStartElement("object");
-            {
-                stream.writeTextElement("title", "Qt Project");
             }
             stream.writeEndElement();
 
@@ -55,54 +55,53 @@ void WriterXML::write(QString path) {
 
     stream.writeEndDocument();
 
+    file.close();
+
+}
+
+void WriterXML::writeAllLines(QString path, AllObjects * allObjects) {
+
+    // Создаем объект файла
+    QFile file(path);
+
+    // Открываем файл для записи
+    file.open(QIODevice::WriteOnly);
+
+    QXmlStreamWriter stream(&file);
+
+    stream.setAutoFormatting(true);
+    stream.setAutoFormattingIndent(3);
+
+    stream.writeStartDocument();
 
 
+    stream.writeStartElement("database");
+    {
+        writeLine(&stream, allObjects->getObject(0));
+    }
+    stream.writeEndElement();
 
 
+    stream.writeEndDocument();
 
-//    QDomDocument document;
+    file.close();
+}
 
-//    QDomElement root = document.createElement("lines");
+void WriterXML::writeLine(QXmlStreamWriter * stream, SoloObject * object) {
 
-//    QDomElement object = document.createElement("object");
+    // Отделяем линии(строки) таблицы в файле xml
+    stream->writeStartElement("line");
+    {
 
+        // Циклически заполняем данные об одиночном объекте SoloObject
+        for(quint32 i = 0 ; i < object->getSizeDataList() ; i++) {
 
+            // Записываем данные <type>data</type>
+            stream->writeTextElement(object->getObjectDataTypes().getEnumNumberType(i)->toString(),
+                                     QString::fromStdString(object->getDataById(i)->toStdString()));
 
-//    object. "edededed");
+        }
 
-//    root.appendChild(object);
-
-
-//    document.appendChild(root);
-
-//    QTextStream stream(&file);
-
-//    stream << document.toString();
-
-//    file.close();
-
-
-//    // Создаем объект, с помощью которого осуществляется запись в файл
-//    QXmlStreamWriter xmlWriter(&file);
-
-//    xmlWriter.setAutoFormatting(true);  // Устанавливаем автоформатирование текста
-
-//    xmlWriter.writeStartDocument();     // Запускаем запись в документ
-
-//        xmlWriter.writeStartElement("Resources");   // Записываем первый элемент с его именем
-
-//            xmlWriter.writeStartElement("Line1");  // Начало тега
-
-//            xmlWriter.writeCharacters("someName"); // Содержимое тега
-
-//            xmlWriter.writeEndElement(); // Закрываем тег
-
-//        xmlWriter.writeEndElement(); // Закрываем первый элемент
-
-//    xmlWriter.writeEndDocument();
-
-//    file.close();   // Закрываем файл
-
-
-
+    }
+    stream->writeEndElement();
 }

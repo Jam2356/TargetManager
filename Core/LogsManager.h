@@ -3,19 +3,26 @@
 
 #include <QDebug>
 
-//Для вывода в логи, содержит название класса и метода, в котором вызывается
-#define shortInfo getClassName() + "->" + QString(__FUNCTION__)
-
 class LogsManager
 {
-    public:
+    private:
         LogsManager();
 
+    public:
+
         /**
-         * @brief logMessage - вывод отлдочной информации
+         * @brief warningMessage - вывод предупреждений
+         * @param className
          * @param message
          */
-        void warningMessage(QString message);
+        static void warningMessage(QString className, QString message);
+
+        /**
+         * @brief infoMessage - вывод информации
+         * @param className
+         * @param message
+         */
+        static void infoMessage(QString className, QString message);
 
 };
 

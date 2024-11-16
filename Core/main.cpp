@@ -8,8 +8,11 @@ int main(int argc, char *argv[])
     QApplication application(argc, argv);
     MainUI w;
     DataManager data;
+    AllObjects aa;
 
-    data.writeTO();
+    data.writeFullDatabase(&aa);
+
+//    data.read();
 
     w.setTableWidget();
 

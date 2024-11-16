@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QTableWidget>
-#include "Core/LogsManager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainUI; }
@@ -14,10 +13,9 @@ class MainUI : public QMainWindow
         Q_OBJECT
 
     private:
-        QString className = "MainUI";
         Ui::MainUI *ui;
         QTableWidget *table;
-        LogsManager * logger;
+        const QString className = "MainUI";
 
     public:
         MainUI(QWidget *parent = nullptr);
@@ -40,12 +38,6 @@ class MainUI : public QMainWindow
          * @param text
          */
         void setItemText(quint32 row, quint32 column, QString text);
-
-        /**
-         * @brief getClassName - возвращает имя класса
-         * @return
-         */
-        QString getClassName();
 
 };
 #endif // MAINUI_H

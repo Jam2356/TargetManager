@@ -4,12 +4,25 @@
 #include <QFile>
 #include <QXmlStreamWriter>
 
+#include "../AllObjects.h"
+
+// Наверное нужно писать <type>data</type> а в логике разбираться что есть что, вытащив из ui
+// список названий столбцов
 class WriterXML {
+
+    private:
+        static QString className;
+
 
     public:
         WriterXML();
 
-        void write(QString path);
+        static void write(QString path);
+
+        static void writeAllLines(QString path, AllObjects * allObjects);
+
+        static void writeLine(QXmlStreamWriter * stream, SoloObject * object);
+
 
 };
 
