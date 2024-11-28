@@ -1,5 +1,5 @@
 ﻿#include "ReaderXML.h"
-
+#include <QFile>
 #include "../LogsManager.h"
 
 // Статическое название класса
@@ -10,11 +10,15 @@ ReaderXML::ReaderXML() {
 }
 
 /**
- * @brief ReaderXML::read - метод чтения
+ * @brief readAllLines - метод чтения всех строк
  * @param path
  */
-SoloObject ReaderXML::read(QString path) {
+AllObjects ReaderXML::readAllLines(QString path) {
 
+    // Пустой экземпляр класса
+    AllObjects readResult;
+
+    // Файл для работы
     QFile file(path);
 
     // Проверка, есть ли файл
@@ -33,27 +37,68 @@ SoloObject ReaderXML::read(QString path) {
 
     }
 
+    // Экземпляр xmlReader
+    QXmlStreamReader readStream(&file);
 
-    QXmlStreamReader xml(&file);
+    // Читаем файл до конца
+    while (!readStream.atEnd()) {
 
-    while (!xml.atEnd()) {
+        readStream.readNext();
 
-        xml.readNext();
+        // Если обнаружили line, то бежим читать данные строки
+        if(readStream.name() == "line") {
 
-        if (xml.isStartElement() && xml.name() == "short") {
+            // Прочитанные данные строки
+            SoloObject soloObject = ReaderXML::ReaderSoloLine(&readStream);
 
-            QString shortValue = xml.readElementText();
+            // Добавляем прочитанное в readResult
+            readResult.appendSoloObject(soloObject);
 
         }
 
-
-
     }
-    if (xml.hasError()) {
+
+    // Если в файле есть ошибки
+    if(readStream.hasError()) {
+
+        LogsManager::warningMessage(ReaderXML::className, "Errors in file!");
 
     }
 
     file.close();
+
+    return readResult;
+
 }
+
+/**
+ * @brief readLine - метод чтения строки
+ * @param path
+ */
+SoloObject ReaderXML::ReaderSoloLine(QXmlStreamReader * readStream) {
+
+    SoloObject soloObject;
+
+    while (!readStream->atEnd()) {
+
+        readStream->readNext();
+
+        if (readStream->isStartElement() && EnumNumberType::containsType(readStream->name().toString())) {
+
+            // Прочитали и сохранили в объект данные
+            soloObject.appendData(readStream->readElementText().toUtf8());
+
+            // Прочитали и сохранили в объект как выше прочитанные данные нам обрабоатывать
+            soloObject.appendType(EnumNumberType::fromString(readStream->name().toString()));
+
+        }
+
+    }
+
+    return soloObject;
+
+}
+
+
 
 

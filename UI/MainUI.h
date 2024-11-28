@@ -3,11 +3,15 @@
 
 #include <QMainWindow>
 #include <QTableWidget>
+#include <QByteArray>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainUI; }
 QT_END_NAMESPACE
 
+/**
+ * @brief The MainUI class - класс отвечающий за главное окно
+ */
 class MainUI : public QMainWindow
 {
         Q_OBJECT
@@ -22,14 +26,14 @@ class MainUI : public QMainWindow
         ~MainUI();
 
         /**
-         * @brief setTableWidget - установить таблицу
+         * @brief setTableWidget - установить стандартную таблицу
          */
         void setTableWidget();
 
         /**
          * @brief setTableWidget - установить таблицу с параметрами
          */
-        void setTableWidget(quint32 row, quint32 column, QList<QString> names);
+        void setTableWidget(quint32 row, quint32 column, QList<QByteArray> * names);
 
         /**
          * @brief MainUI::setItemText - установить ТЕКСТ в существующую ЯЧЕЙКУ

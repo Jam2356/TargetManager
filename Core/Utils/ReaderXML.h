@@ -4,7 +4,7 @@
 #include <QFile>
 #include <QXmlStreamReader>
 
-#include "SoloObject.h"
+#include "../AllObjects.h"
 
 class ReaderXML {
 
@@ -15,10 +15,16 @@ class ReaderXML {
     public:
 
         /**
-         * @brief read - метод чтения
+         * @brief readAllLines - метод чтения всех строк одной темы
          * @param path
          */
-        static SoloObject read(QString path);
+        static AllObjects readAllLines(QString path);
+
+        /**
+         * @brief readLine - метод чтения строки
+         * @param path
+         */
+        static SoloObject ReaderSoloLine(QXmlStreamReader * stream);
 
         /**
          * @brief getClassName - возвращает имя класса

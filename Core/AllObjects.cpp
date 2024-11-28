@@ -1,5 +1,8 @@
 ﻿#include "AllObjects.h"
 
+//    QString a;
+//    a.append(QString::fromUtf8(soloObject.getDataById(3)));
+
 AllObjects::AllObjects() {
 
     this->testInit();
@@ -14,13 +17,26 @@ AllObjects::AllObjects() {
 //    return this->typeList;
 //}
 
-SoloObject * AllObjects::getObject(quint32 number) {
-    return &allObjects[number];
+SoloObject * AllObjects::getSoloObject(quint32 number) {
+
+    return &objects[number];
+
 }
+
+/**
+ * @brief AllObjects::appendSoloObject - метод добавления soloObject в objects
+ */
+void AllObjects::appendSoloObject(const SoloObject &soloObject) {
+
+    this->objects.append(soloObject);
+
+}
+
+
 
 void AllObjects::testInit() {
 
     SoloObject a;
-    this->allObjects.append(a);
+    this->objects.append(a);
 
 }

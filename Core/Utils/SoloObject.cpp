@@ -3,6 +3,9 @@
 #include "../LogsManager.h"
 
 SoloObject::SoloObject() {
+
+    this->dataList.clear();
+    this->typeList.clearDataTypes();
     this->dataList.append("deded");
     this->dataList.append("12");
     this->dataList.append("%");
@@ -14,6 +17,13 @@ SoloObject::SoloObject() {
     this->typeList.appendInt();
     this->typeList.appendBytes();
     this->typeList.appendString();
+
+}
+
+SoloObject::SoloObject(const SoloObject& object) {
+
+    dataList = object.dataList;
+    typeList = object.typeList;
 
 }
 
@@ -30,14 +40,24 @@ void SoloObject::appendData(QByteArray data) {
 }
 
 /**
+ * @brief getData - метод возвращает лист данных
+ * @return
+ */
+QList<QByteArray> * SoloObject::getData() {
+
+    return &this->dataList;
+
+}
+
+/**
  * @brief getObjectDataTypes - мтод возвращает лист типов
  */
-ObjectDataTypes SoloObject::getObjectDataTypes() {
+ObjectDataTypes * SoloObject::getObjectDataTypes() {
 
     // Проверка
     this->checkSynchronizationLists();
 
-    return this->typeList;
+    return &this->typeList;
 
 }
 
@@ -45,9 +65,9 @@ ObjectDataTypes SoloObject::getObjectDataTypes() {
  * @brief getEnumNumberType - возвращает тип из листа
  * @param id - id типа в списке
  */
-QByteArray * SoloObject::getDataById(quint32 id) {
+QByteArray SoloObject::getDataById(quint32 id) const {
 
-    return &this->dataList[id];
+    return this->dataList[id];
 
 }
 
@@ -76,5 +96,10 @@ quint32 SoloObject::getSizeTypeList() {
 bool SoloObject::checkSynchronizationLists() {
 
     Q_ASSERT(this->getSizeTypeList() == this->getSizeDataList());
+
+    if(this->getSizeTypeList() == this->getSizeDataList()) {
+        return true;
+    }
+    return false;
 
 }

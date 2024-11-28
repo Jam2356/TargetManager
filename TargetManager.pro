@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     Core/AllObjects.cpp \
+    Core/Core.cpp \
     Core/DataManager.cpp \
     Core/LogsManager.cpp \
     Core/Utils/ObjectDataTypes.cpp \
@@ -19,9 +20,11 @@ SOURCES += \
     Core/main.cpp \
     UI/MainUI.cpp \
     UI/TableManager.cpp \
+    UI/UIController.cpp
 
 HEADERS += \
     Core/AllObjects.h \
+    Core/Core.h \
     Core/DataManager.h \
     Core/LogsManager.h \
     Core/Utils/EnumNumberType.h \
@@ -29,7 +32,8 @@ HEADERS += \
     Core/Utils/ReaderXML.h \
     Core/Utils/SoloObject.h \
     Core/Utils/WriterXML.h \
-    UI/MainUI.h
+    UI/MainUI.h \
+    UI/UIController.h
 
 
 FORMS += \

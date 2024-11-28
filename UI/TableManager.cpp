@@ -2,7 +2,7 @@
 #include "Core/LogsManager.h"
 
 /**
- * @brief setTableWidget - установить таблицу
+ * @brief setTableWidget - установить стандартную таблицу
  */
 void MainUI::setTableWidget() {
     QStringList labels;
@@ -15,10 +15,10 @@ void MainUI::setTableWidget() {
 /**
  * @brief setTableWidget - установить таблицу с параметрами
  */
-void MainUI::setTableWidget(quint32 rows, quint32 columns, QList<QString> columnsNames) {
+void MainUI::setTableWidget(quint32 rows, quint32 columns, QList<QByteArray> * columnsNames) {
 
     //Проверяем, достаточно ли у нас названий для колонок
-    if(columnsNames.size() != static_cast<int>(columns)) {
+    if(columnsNames->size() != static_cast<int>(columns)) {
         LogsManager::warningMessage(className, "Number of column names does not match the number of columns");
         return;
     }
@@ -26,7 +26,8 @@ void MainUI::setTableWidget(quint32 rows, quint32 columns, QList<QString> column
     //Список наших имен для колонок(слева на право)
     QStringList labels;
 
-    for(const QString & name : columnsNames) {
+    // Наудивление "foreach" умнее чем "for(value : buffer)" не ругается на "*columnsNames" предупреждениями и выводит корректро
+    foreach (const QByteArray & name, *columnsNames) {
         labels << name;
     }
 

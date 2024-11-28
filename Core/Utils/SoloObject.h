@@ -23,6 +23,8 @@ class SoloObject {
     public:
         SoloObject();
 
+        SoloObject(const SoloObject& object);
+
         /**
          * @brief appendType - добавить тип данных в лист типов
          * @param type - тип
@@ -36,15 +38,21 @@ class SoloObject {
         void appendData(QByteArray data);
 
         /**
+         * @brief getData - метод возвращает лист данных
+         * @return
+         */
+        QList<QByteArray> * getData();
+
+        /**
          * @brief getObjectDataTypes - мтод возвращает лист типов
          */
-        ObjectDataTypes getObjectDataTypes();
+        ObjectDataTypes * getObjectDataTypes();
 
         /**
          * @brief getEnumNumberType - возвращает тип из листа
          * @param id - id типа в списке
          */
-        QByteArray * getDataById(quint32 id);
+        QByteArray getDataById(quint32 id) const;
 
         /**
          * @brief getSize - возвращает размер dataList
@@ -55,6 +63,8 @@ class SoloObject {
          * @brief getSize - возвращает размер typeList
          */
         quint32 getSizeTypeList();
+
+
 
 };
 

@@ -1,15 +1,18 @@
 ﻿#ifndef ALLOBJECTS_H
 #define ALLOBJECTS_H
 
-#include <QMap>
+#include <QList>
+#include <algorithm>
+
 #include "Utils/SoloObject.h"
+#include "LogsManager.h"
 
 
 class AllObjects
 {
     private:
         // Хранит в себе данные о предмете(объекте)
-        QList<SoloObject> allObjects;
+        QList<SoloObject> objects;
 
     public:
         AllObjects();
@@ -24,10 +27,15 @@ class AllObjects
 //         */
 //        ObjectDataTypes getTypeList();
 
-        //NO-OP
-        quint32 getNumberParameters();
+        /**
+         * @brief getObject - метод возвращает ссылку на soloObject
+         */
+        SoloObject * getSoloObject(quint32 number);
 
-        SoloObject * getObject(quint32 number);
+        /**
+         * @brief appendSoloObject - метод добавления soloObject в allObjects
+         */
+        void appendSoloObject(const SoloObject & soloObject);
 
         void testInit();
 

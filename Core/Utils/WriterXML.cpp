@@ -77,7 +77,7 @@ void WriterXML::writeAllLines(QString path, AllObjects * allObjects) {
 
     stream.writeStartElement("database");
     {
-        writeLine(&stream, allObjects->getObject(0));
+        writeLine(&stream, allObjects->getSoloObject(0));
     }
     stream.writeEndElement();
 
@@ -97,8 +97,8 @@ void WriterXML::writeLine(QXmlStreamWriter * stream, SoloObject * object) {
         for(quint32 i = 0 ; i < object->getSizeDataList() ; i++) {
 
             // Записываем данные <type>data</type>
-            stream->writeTextElement(object->getObjectDataTypes().getEnumNumberType(i)->toString(),
-                                     QString::fromStdString(object->getDataById(i)->toStdString()));
+            stream->writeTextElement(object->getObjectDataTypes()->getEnumNumberType(i)->toString(),
+                                     QString::fromUtf8(object->getDataById(i)));
 
         }
 

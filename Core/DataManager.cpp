@@ -9,10 +9,28 @@ DataManager::DataManager(QObject *parent)
 
 }
 
+/**
+ * @brief DataManager::writeFullDatabase - метод записывает все данные в файл xml
+ * @param allObjects
+ */
 void DataManager::writeFullDatabase(AllObjects * allObjects) {
+
     WriterXML::writeAllLines(path, allObjects);
+
 }
 
-void DataManager::read() {
-    ReaderXML::read(path);
+/**
+ * @brief DataManager::readFullDatabase - метод считывает все данные из файла xml
+ * @return
+ */
+void DataManager::readFullDatabase() {
+
+    fullObjects = ReaderXML::readAllLines(path);
+
+}
+
+const AllObjects DataManager::getFullObjects() {
+
+    return this->fullObjects;
+
 }

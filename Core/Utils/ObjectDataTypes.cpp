@@ -59,6 +59,10 @@ void ObjectDataTypes::appendTime() {
 
 }
 
+void ObjectDataTypes::clearDataTypes() {
+    this->typeList.clear();
+}
+
 ///**
 // * @brief getTypeNumbers - возвращает список типов typeNumbers
 // */
